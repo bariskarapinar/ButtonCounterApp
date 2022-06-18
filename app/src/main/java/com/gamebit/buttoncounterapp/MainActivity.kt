@@ -11,31 +11,23 @@ import android.widget.TextView
 
 class MainActivity : AppCompatActivity() {
 
-    private var userInput: EditText? = null
-    private var button: Button? = null
     private var textView: TextView? = null
-    private var numTimesClicked = 0
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
 
-        userInput = findViewById(R.id.editText)
-        button = findViewById(R.id.button)
+        val userInput: EditText = findViewById(R.id.editText)
+        val button: Button = findViewById(R.id.button)
         textView = findViewById(R.id.textView)
         textView?.text = ""
         textView?.movementMethod = ScrollingMovementMethod()
 
-        button?.setOnClickListener(object : View.OnClickListener{
+        button.setOnClickListener(object : View.OnClickListener{
             override fun onClick(p0: View?) {
-                Log.d("xxx","")
-                numTimesClicked += 1
-                textView?.append("The button got tapped $numTimesClicked time")
-                if (numTimesClicked != 1){
-                    textView?.append("s\n")
-                } else{
-                    textView?.append("\n")
-                }
+                textView?.append(userInput.text)
+                textView?.append("\n")
+                userInput.text.clear()
 
             }
         })
